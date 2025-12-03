@@ -5,6 +5,7 @@ This module defines a function `text_indentation` that prints a text
 with two new lines after each occurrence of '.', '?' and ':'.
 """
 
+
 def text_indentation(text):
     """Print text with two new lines after '.', '?' and ':'.
 
@@ -18,8 +19,9 @@ def text_indentation(text):
         raise TypeError("text must be a string")
 
     new_line = False
+
     for ch in text:
-        # If we just started a new line, skip any leading spaces
+        # Skip leading spaces after a separator (., ?, :)
         if new_line and ch == " ":
             continue
 
