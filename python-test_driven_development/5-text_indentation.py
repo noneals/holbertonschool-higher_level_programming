@@ -18,18 +18,20 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    new_line = False
+    i = 0
+    length = len(text)
 
-    for ch in text:
-        # Skip leading spaces after a separator (., ?, :)
-        if new_line and ch == " ":
-            continue
+    while i < length:
+        ch = text[i]
 
         print(ch, end="")
 
         if ch in ".?:":
             print()
             print()
-            new_line = True
-        else:
-            new_line = False
+
+            # إذا كان فيه مسافة واحدة بعدها—اطبعيها
+            if i + 1 < length and text[i + 1] == " ":
+                print(" ", end="")
+                i += 1  # نتخطى هذي المسافة
+        i += 1
