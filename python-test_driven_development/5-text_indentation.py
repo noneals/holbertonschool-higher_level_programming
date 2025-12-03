@@ -28,17 +28,8 @@ def text_indentation(text):
         if ch in ".?:":
             print()
             print()
-
-
-            space_count = 0
-            j = i + 1
-            while j < length and text[j] == " ":
-                space_count += 1
-                j += 1
-
-
-            if space_count > 0:
-                print(" ", end="")
-
-            i = j - 1  
+            i += 1
+            while i < length and text[i] == " ":
+                i += 1
+            i -= 1
         i += 1
