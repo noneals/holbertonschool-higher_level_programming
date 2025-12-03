@@ -3,6 +3,7 @@
 Module that defines a function add_integer which adds two integers.
 """
 
+
 def add_integer(a, b=98):
     """
     Adds two integers.
@@ -20,27 +21,21 @@ def add_integer(a, b=98):
         int: Sum of a and b as integers.
     """
 
-    # تحقق من نوع a
     if type(a) not in [int, float]:
         raise TypeError("a must be an integer")
-
-    # تحقق من نوع b
     if type(b) not in [int, float]:
         raise TypeError("b must be an integer")
 
-    # تحقق من NaN و Infinity لـ a
     if isinstance(a, float):
-        if a != a:  # NaN
+        if a != a:  # NaN check
             raise ValueError("a cannot be NaN")
-        if a > 1e308 or a < -1e308:  # Infinity تقريبية
+        if a > 1e308 or a < -1e308:  # Infinity approx check
             raise OverflowError("cannot convert float infinity to integer")
 
-    # تحقق من NaN و Infinity لـ b
     if isinstance(b, float):
-        if b != b:
+        if b != b:  # NaN check
             raise ValueError("b cannot be NaN")
-        if b > 1e308 or b < -1e308:
+        if b > 1e308 or b < -1e308:  # Infinity approx check
             raise OverflowError("cannot convert float infinity to integer")
 
-    # تحويل إلى int وجمع
     return int(a) + int(b)
