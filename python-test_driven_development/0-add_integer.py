@@ -31,11 +31,9 @@ def add_integer(a, b=98):
             raise ValueError("a cannot be NaN")
         if a > 1e308 or a < -1e308:  # Infinity approx check
             raise OverflowError("cannot convert float infinity to integer")
-        a = int(a)
     if isinstance(b, float):
         if b != b:  # NaN check
             raise ValueError("b cannot be NaN")
         if b > 1e308 or b < -1e308:  # Infinity approx check
             raise OverflowError("cannot convert float infinity to integer")
-        b=int(b)
     return a + b
