@@ -11,15 +11,15 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    new_line = False
+    keep_space = False
     for char in text:
-        if new_line and char == " ":
-            continue  # Skip leading spaces
-        new_line = False
-
-        print(char, end="")
+        # إذا كان الحرف السابق كان . ? : وهذا الحرف space → نخلي المسافة
+        if keep_space is False or char != " ":
+            print(char, end="")
 
         if char in ".?:":
             print()
             print()
-            new_line = True
+            keep_space = True
+        else:
+            keep_space = False
