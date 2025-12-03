@@ -23,15 +23,22 @@ def text_indentation(text):
 
     while i < length:
         ch = text[i]
-
         print(ch, end="")
 
         if ch in ".?:":
             print()
             print()
 
-            # إذا كان فيه مسافة واحدة بعدها—اطبعيها
-            if i + 1 < length and text[i + 1] == " ":
+
+            space_count = 0
+            j = i + 1
+            while j < length and text[j] == " ":
+                space_count += 1
+                j += 1
+
+
+            if space_count > 0:
                 print(" ", end="")
-                i += 1  # نتخطى هذي المسافة
+
+            i = j - 1  
         i += 1
