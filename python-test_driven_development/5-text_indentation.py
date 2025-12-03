@@ -1,22 +1,25 @@
 #!/usr/bin/python3
-""" Définit une fonction qui affiche un texte 
-avec des retours a la ligne après des . ? et :"""
+"""
+Defines text_indentation
+"""
 
 
 def text_indentation(text):
-    """Affiche un texte avec des retours a la ligne après des . ? et :
-    Raises:
-        TypeError: if text isnt a string
     """
-
-
+    Prints text with 2 new lines after '.', '?' and ':'
+    """
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    for i in text:
-        if i == "." or i == "?" or i == ":":
-            print(i, end="")
+    new_line = False
+    for char in text:
+        if new_line and char == " ":
+            continue  # Skip leading spaces
+        new_line = False
+
+        print(char, end="")
+
+        if char in ".?:":
             print()
             print()
-        else:
-            print(i, end="")
+            new_line = True
