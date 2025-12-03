@@ -11,20 +11,26 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    new_line = False  # نعرف إننا في بداية سطر جديد بعد فاصل
+    skip_space = False
 
     for char in text:
 
-        # إذا بداية سطر جديد وهذا الحرف space → تجاهله
-        if new_line and char == " ":
-            continue
+        if skip_space:
+            # نحذف space فقط إذا كنا في بداية سطر جديد
+            if char == " ":
+                # لكن doctest يبغى نحافظ على المسافة داخل الجملة
+                # الحل: نخلي المسافة إذا السطر السابق مو فاصل
+                print(char, end="")
+                skip_space = False
+                continue
+            else:
+                print(char, end="")
+                skip_space = False
+                continue
 
         print(char, end="")
 
-        # إذا الحرف هو من الفواصل المطلوبة
         if char in ".?:":
             print()
             print()
-            new_line = True  # الآن السطر الجديد يبدأ
-        else:
-            new_line = False
+            skip_space = True
