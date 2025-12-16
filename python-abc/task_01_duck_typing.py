@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from abc import ABC, abstractmethod
 import math
 
@@ -14,11 +15,7 @@ class Shape(ABC):
 
 class Circle(Shape):
     def __init__(self, radius):
-        if radius < 0:
-            self.radius = 0
-            print("Warning: Radius cannot be negative. Setting radius to 0.")
-        else:
-            self.radius = radius
+        self.radius = radius
 
     def area(self):
         return math.pi * self.radius ** 2
@@ -42,22 +39,3 @@ class Rectangle(Shape):
 def shape_info(shape):
     print(f"Area: {shape.area()}")
     print(f"Perimeter: {shape.perimeter()}")
-
-
-try:
-    circle = Circle(5)
-    shape_info(circle)
-except ValueError as e:
-    print(e)
-
-try:
-    rectangle = Rectangle(4, 6)
-    shape_info(rectangle)
-except ValueError as e:
-    print(e)
-
-try:
-    invalid_circle = Circle(-5)
-    shape_info(invalid_circle)
-except ValueError as e:
-    print(e)
