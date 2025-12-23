@@ -1,30 +1,18 @@
 #!/usr/bin/python3
-"""
-Module 8-add_item
+"""Module for converting class instances to dictionaries.
 
-Contains function that adds and saves to Python obj to JSON file; loads objects
-
-# run with ./9-add_item.py
-#
-# cat add_item.json ; echo ""
-# expect output: []
-#
-# ./9-add_item.py some random args
-# cat add_item.json ; echo ""
-# expect output: ["some", "random", "args"]
-
+This module provides a function to convert class instances
+to dictionary representation for JSON serialization.
 """
 
 
-from sys import argv
-save_to_json_file = __import__('7-save_to_json_file').save_to_json_file
-load_from_json_file = __import__('8-load_from_json_file').load_from_json_file
+def class_to_json(obj):
+    """Return dictionary description for JSON serialization.
 
-filename = "add_item.json"
+    Args:
+        obj: Instance of a class with serializable attributes.
 
-try:
-    existing_content = load_from_json_file(filename)
-except FileNotFoundError:
-    existing_content = []
-
-save_to_json_file(existing_content + argv[1:], filename)
+    Returns:
+        dict: Dictionary representation of the object.
+    """
+    return obj.__dict__
