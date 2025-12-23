@@ -1,30 +1,19 @@
 #!/usr/bin/python3
+"""Script to add command line arguments to a list in JSON file.
+
+This script loads a list from add_item.json, adds all command line
+arguments to it, and saves it back to the file.
 """
-Module 7-add_item
-
-Contains function that adds and saves to Python obj to JSON file; loads objects
-
-# run with ./9-add_item.py
-#
-# cat add_item.json ; echo ""
-# expect output: []
-#
-# ./9-add_item.py some random args
-# cat add_item.json ; echo ""
-# expect output: ["some", "random", "args"]
-
-"""
-
-
-from sys import argv
-save_to_json_file = __import__('7-save_to_json_file').save_to_json_file
-load_from_json_file = __import__('8-load_from_json_file').load_from_json_file
+import sys
+save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
+load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
 filename = "add_item.json"
 
 try:
-    existing_content = load_from_json_file(filename)
+    items = load_from_json_file(filename)
 except FileNotFoundError:
-    existing_content = []
+    items = []
 
-save_to_json_file(existing_content + argv[1:], filename)
+items.extend(sys.argv[1:])
+save_to_json_file(items, filename)
